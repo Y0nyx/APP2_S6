@@ -1,3 +1,5 @@
+#include "i2c_com.h"
+
 #ifndef BAROMETER_SENSOR_H
 #define BAROMETER_SENSOR_H
 
@@ -30,9 +32,10 @@ class Barometer_sensor {
     int c0, c1, c00, c10, c01, c11, c20, c21, c30;
     float pressure;
     float temperature;
-    void complementTwoToBinary(int &cx, int nbBits);
-    void read_coefficients();
+    I2C_com i2c_com;
+
     void read_sensor();
+    void read_coefficients();
     void calculate_pressure(float Praw_sc, float Traw_sc);
     void calculate_temperature(float Traw_sc);
     

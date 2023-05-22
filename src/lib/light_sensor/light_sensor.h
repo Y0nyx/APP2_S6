@@ -1,12 +1,14 @@
 #ifndef LIGHT_SENSOR_H
 #define LIGHT_SENSOR_H
 
+#define LIGHT_PIN 34
+
 class Light_sensor {
     private:
-    int pin;
 
     public:
-    Light_sensor(int pin);
+    Light_sensor();
+    ~Light_sensor();
     int getRaw();
 };
 

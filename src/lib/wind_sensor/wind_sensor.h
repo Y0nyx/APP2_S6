@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #ifndef WIND_SENSOR_H
 #define WIND_SENSOR_H
 
@@ -15,6 +17,7 @@ class Wind_sensor {
     void setup();
     float get_wind_direction();
     float get_wind_speed();
+    String get_wind_direction_string();
 };
 
 #endif

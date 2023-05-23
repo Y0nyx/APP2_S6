@@ -1,5 +1,4 @@
 #include "wind_sensor.h"
-#include "Arduino.h"
 
 volatile unsigned long Wind_sensor::speed_counter = 0;
 
@@ -17,7 +16,8 @@ void Wind_sensor::setup() {
 }
 
 float Wind_sensor::get_wind_direction() {
-    float voltage = analogRead(DIRECTION_PIN);
+    int value = analogRead(DIRECTION_PIN);
+    float voltage = (value*3.3)/4096;
 
     if (3750 <= voltage && voltage < 3800) {
         return 0;
@@ -59,4 +59,37 @@ float Wind_sensor::get_wind_speed() {
     speed_counter = 0;
 
     return wind_speed; 
+}
+
+String Wind_sensor::get_wind_direction_string(){
+    int val = analogRead(DIRECTION_PIN);
+    float voltage = (val*3.3)/4096;
+
+    if(voltage >= 2.09 && voltage <= 2.39){
+        return "NORD";
+    }
+    else if(voltage >= 1.15 && voltage <= 1.34){
+        return "NORD-EST";
+    }
+    else if(voltage >= 0.08 && voltage <= 0.17){
+        return "EST";
+    }
+    else if(voltage >= 0.44 && voltage <= 0.47){
+        return "SUD-EST";
+    }
+    else if(voltage >= 0.27 && voltage <= 0.78){
+        return "SUD";
+    }
+    else if(voltage >= 1.76 && voltage <= 1.87){
+        return "SUD-OUEST";
+    }
+    else if(voltage >= 3.09 && voltage <= 3.12){
+        return "OUEST";
+    }
+    else if(voltage >= 2.52 && voltage <= 2.81){
+        return "NORD-OUEST";
+    }
+    else {
+        return "direction inconnu";
+    }
 }

@@ -1,3 +1,5 @@
+#include <Arduino.h>
+
 #ifndef LIGHT_SENSOR_H
 #define LIGHT_SENSOR_H
 
@@ -9,7 +11,8 @@ class Light_sensor {
     public:
     Light_sensor();
     ~Light_sensor();
-    int getRaw();
+    float getRaw();
+    String get_info();
 };
 
 #endif
